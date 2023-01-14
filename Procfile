@@ -1,1 +1,1 @@
-web: gunicorn richmondpd.wsgi
+web: gunicorn news.wsgi
