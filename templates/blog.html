@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Body Inner -->
+    <div class="body-inner">
+
+        <!-- Content -->
+        <section id="page-content">
+            <div class="container">
+                <!-- post content -->
+                <!-- Page title -->
+                <div class="page-title">
+                    <h1>Police Log</h1>
+                   
+                </div>
+                <!-- end: Page title -->
+                <!-- Blog -->
+                <div id="blog" class="grid-layout post-2-columns m-b-30" data-item="post-item">
+                    <!-- Post item-->
+                    {% for post in queryset %}
+                    <div class="post-item border">
+                        <div class="post-item-wrap">
+                            <div class="post-image">
+                                <a href="{{ post.get_absolute_url }}"> <img alt="" src="{{ post.thumbnail.url }}"> </a> 
+                                <span class="post-meta-category">
+                                    {% for cat in post.categories.all %}
+                                    <a href="#">{{ cat }}</a>
+                                    {% endfor %}
+                                </span>
+                             </div>
+                            <div class="post-item-description"> <span class="post-meta-date"><i class="fa fa-calendar-o"></i>{{ post.timestamp | timesince }} ago</span> <span class="post-meta-comments"><a href=""><i class="fa fa-comments-o"></i>{{ post.comment_count }}</a></span>
+                                <h2><a href="#">{{ post.title }}</a></h2>
+                                <p>{{ post.overview }}</p>
+                                <a href="{{ post.get_absolute_url }}" class="item-link">Read More <i class="fa fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %} 
+                    <!-- end: Post item-->
+                </div>
+                <!-- end: Blog -->
+                <!-- Pagination -->
+                <ul class="pagination">
+                    {% if queryset.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?{{ page_request_var}}={{ queryset.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                    {% endif %}
+                    <li class="page-item active"><a class="page-link active" href="#">{{ queryset.number }}</a></li>
+
+                    {% if queryset.has_next %}
+                    <li class="page-item"><a class="page-link" href="?{{ page_request_var}}={{ queryset.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                    {% endif %}
+                </ul>
+                <!-- end: Pagination -->
+            </div>
+            <!-- end: post content -->
+        </section>
+        <!-- end: Content -->
+
+        {% endblock content %}
