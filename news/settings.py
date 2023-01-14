@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-o^b9^fi^v6-1j90djbiz*0wfpoeirh-kbkftulkix2!idadybq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [richmondripd.herokuapp.com]
+ALLOWED_HOSTS = [richmondpd-production.up.railway.app]
 
 
 # Application definition
